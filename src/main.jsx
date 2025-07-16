@@ -12,6 +12,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <Routes>
         <Route path="/" element={<App />}>
           <Route path="home" element={<Home />} />
+          <Route path="home/:noteId" element={<NoteDetail />} />
           <Route path="sticky" element={<Sticky />} /> {/* This can later be StickyNotesPage */}
           <Route path="feedback" element={<Feedback />} />
         </Route>

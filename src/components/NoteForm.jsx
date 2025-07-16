@@ -21,7 +21,7 @@ const NoteForm = ({ onAdd }) => {
     onAdd(note);
     setNote({ title: '', description: '' });
 
-    // Reset textarea height when form is submitted
+
     if (textareaRef.current) {
       textareaRef.current.style.height = 'auto';
     }
@@ -52,7 +52,7 @@ const NoteForm = ({ onAdd }) => {
           value={note.description}
           onChange={handleChange}
           required
-          rows={1}
+          rows={3}
           style={{
             padding: '0.5rem',
             marginBottom: '0.5rem',
