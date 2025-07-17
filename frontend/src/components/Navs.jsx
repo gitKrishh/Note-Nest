@@ -29,7 +29,7 @@ const Navs = () => {
               to="/feedback" 
               className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}
             >
-              Feedback
+              About
             </NavLink>
           </li>
         </ul>
