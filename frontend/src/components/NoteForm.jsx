@@ -9,22 +9,31 @@ const NoteForm = ({ onAdd }) => {
     const { name, value } = e.target;
     setNote({ ...note, [name]: value });
 
-    // Auto-expand the textarea height
     if (name === 'description' && textareaRef.current) {
-      textareaRef.current.style.height = 'auto'; // Reset height
-      textareaRef.current.style.height = textareaRef.current.scrollHeight + 'px'; // Set new height
+      textareaRef.current.style.height = 'auto';
+      textareaRef.current.style.height = textareaRef.current.scrollHeight + 'px';
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAdd(note);
-    setNote({ title: '', description: '' });
 
-
-    if (textareaRef.current) {
-      textareaRef.current.style.height = 'auto';
-    }
+    fetch('http://localhost:8000/notes', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(note),
+    })
+      .then((res) => res.json())
+      .then((savedNote) => {
+        onAdd(savedNote);
+        setNote({ title: '', description: '' });
+        if (textareaRef.current) {
+          textareaRef.current.style.height = 'auto';
+        }
+      })
+      .catch((error) => {
+        console.error('Failed to save note:', error);
+      });
   };
 
   return (
@@ -58,8 +67,8 @@ const NoteForm = ({ onAdd }) => {
             marginBottom: '0.5rem',
             display: 'block',
             width: '100%',
-            resize: 'none',           // disables manual resize
-            overflow: 'hidden',       // hides scrollbars
+            resize: 'none',
+            overflow: 'hidden',
             lineHeight: '1.5rem',
             boxSizing: 'border-box',
           }}
