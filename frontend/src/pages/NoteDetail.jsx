@@ -1,16 +1,34 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 const NoteDetail = () => {
-  const { noteId } = useParams();
+  const { id } = useParams();  
+  const [note, setNote] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch(`http://localhost:8000/notes/${id}`)
+      .then(res => res.json())
+      .then(data => {
+        setNote(data);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error('Error loading note:', err);
+        setLoading(false);
+      });
+  }, [id]);
+
+  if (loading) return <p>Loading note...</p>;
+  if (!note) return <p>Note not found</p>;
 
   return (
-    <div style={{ padding: '2rem' }}>
-      <h2>Note ID: {noteId}</h2>
-      {/* In a real app, you'd fetch or find this note by ID */}
-      <p>This is where the detailed view of the note would be shown.</p>
+    <div style={{ padding: '1rem' }}>
+      <h2>{note.title}</h2>
+      <p>{note.description}</p>
     </div>
   );
 };
 
 export default NoteDetail;
+

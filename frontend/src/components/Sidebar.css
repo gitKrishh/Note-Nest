@@ -1,41 +1,100 @@
 .sidebar {
-    width: 250px;
-    height: 100vh;
-    background-color: #132A13;
-    color: white;
-    margin: 0;
-    border: none;
-    box-sizing: border-box;
-    padding: 20px 0;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  width: 250px;
+  height: 100vh;
+  background: linear-gradient(135deg, #132A13, #31572C);
+  color: #f1f1f1;
+  padding: 30px 0;
+  box-sizing: border-box;
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.2);
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  backdrop-filter: blur(10px);
+
+
 }
 
+
 .nav-links {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  list-style: none;
+  padding: 10px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .nav-links li {
-    padding: 10px 20px;
+  border-radius: 30px;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+
+.nav-links li:hover {
+  transform: translateX(5px);
 }
 
 .nav-link {
-    color: #ecf0f1;
-    text-decoration: none;
-    display: block;
-    padding: 8px 15px;
-    border-radius: 50px;
-    transition: all 0.3s ease;
+  display: block;
+  padding: 12px 20px;
+  color: #ecf0f1;
+  text-decoration: none;
+  font-weight: 500;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 30px;
+  transition: all 0.3s ease;
 }
 
 .nav-link:hover {
-    background-color: #34495e;
-    color: #fff;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
 }
 
 .nav-link.active {
-    background-color: #4F772D;
-    color: rgb(0, 0, 0);
-    font-weight: bold;
+  background: linear-gradient(to right, #4F772D, #90A955);
+  color: black;
+  font-weight: bold;
+}
+
+
+.nav-links {
+  list-style: none;
+  padding: 10px;
+  margin: 10px;
+}
+
+.nav-link {
+  display: block;
+  padding: 0.75rem 1rem;
+  margin: 0.3rem 0;
+  border-radius: 50px;
+  text-decoration: none;
+  color: #ccc;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  background-color: #132A13;
+  color: #fff;
+  transform: translateX(5px);
+}
+
+.nav-link.active {
+  background-color: #4c8bf5;
+  color: white;
+  font-weight: bold;
+}
+
+
+.main-content {
+  flex: 1;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+  padding: 10px;
+  margin-left: 250px; /* Same as sidebar width */
+
 }

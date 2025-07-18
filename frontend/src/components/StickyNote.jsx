@@ -13,7 +13,8 @@ const StickyNote = ({ note, onUpdate, onDelete }) => {
   const handleMouseMove = (e) => {
     if (!isDragging) return;
     const newX = e.clientX - noteRef.current.startX;
-    const newY = e.clientY - noteRef.current.startY;
+const newY = Math.max(100, e.clientY - noteRef.current.startY); // prevent overlap with header
+
     onUpdate(note.id, { x: newX, y: newY });
   };
 

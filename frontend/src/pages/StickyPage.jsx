@@ -5,9 +5,8 @@ const StickyPage = () => {
   const [notes, setNotes] = useState(() =>
     JSON.parse(localStorage.getItem('stickyNotes') || '[]')
   );
-  
 
-  const addNote = () => {
+const addNote = () => {
   const sidebarWidth = 250;
   const spacing = 220; // vertical space between notes
   const notesPerColumn = 4;
@@ -18,14 +17,12 @@ const StickyPage = () => {
   const newNote = {
     id: Date.now(),
     content: '',
-    x: sidebarWidth + 20 + column * 240, // 240 = note width + margin
-    y: 60 + row * spacing,               // stack vertically
+    x: sidebarWidth + 20 + column * 240,
+    y: 150 + row * spacing, // Adjusted spawn Y to avoid header overlap
   };
 
   setNotes(prev => [...prev, newNote]);
 };
-
-
 
   const updateNote = (id, updatedFields) => {
     setNotes(prev =>
@@ -37,13 +34,30 @@ const StickyPage = () => {
     setNotes(prev => prev.filter(note => note.id !== id));
   };
 
+  const deleteAllNotes = () => {
+    setNotes([]);
+  };
+
   useEffect(() => {
     localStorage.setItem('stickyNotes', JSON.stringify(notes));
   }, [notes]);
 
   return (
     <div>
-      <button onClick={addNote}>Add Sticky Note</button>
+      <div
+        style={{
+          position: 'sticky',
+          top: 0,
+          backgroundColor: '#fff',
+          padding: '1rem',
+          zIndex: 10,
+          borderBottom: '1px solid #ddd',
+        }}
+      >
+        <button onClick={addNote} style={{ marginRight: '1rem' }}>➕ Add Sticky Note</button>
+        <button onClick={deleteAllNotes}>🗑️ Delete All Notes</button>
+      </div>
+
       {notes.map(note => (
         <StickyNote
           key={note.id}

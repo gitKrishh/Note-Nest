@@ -1,23 +1,37 @@
 import React, { useState } from 'react';
 import NoteForm from '../components/NoteForm';
 import NoteList from '../components/NoteList';
+import notes from '../../../backend/notes.json';
 
 const Home = () => {
-  const [notes, setNotes] = useState([]);
+  const [note, setNote] = useState(notes);
 
-  const addNote = (newNote) => {
-    setNotes(prev => [...prev, { ...newNote, id: Date.now() }]);
-  };
+  const addNote = async (newNote) => {
+  try {
+    const response = await fetch('http://localhost:8000/notes', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newNote)
+    });
+
+    const savedNote = await response.json(); // this has the id from server
+
+    setNote(prev => [...prev, savedNote]); // ✅ use server-generated id
+  } catch (error) {
+    console.error('Failed to add note:', error);
+  }
+};
+
 
   const deleteNote = (id) => {
-    setNotes(prev => prev.filter(note => note.id !== id));
+    setNote(prev => prev.filter(note => note.id !== id));
   };
 
   return (
     <div style={{ padding: '2rem' }}>
       <h2>My Notes</h2>
       <NoteForm onAdd={addNote} />
-      <NoteList notes={notes} onDelete={deleteNote} />
+      <NoteList notes={note} onDelete={deleteNote} />
 
     </div>
   );
