@@ -15,32 +15,7 @@ const NoteForm = ({ onAdd }) => {
     }
   };
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-    
-  //   fetch('http://localhost:8000/notes', {
-  //     method: 'POST',
-  //     headers: { 'Content-Type': 'application/json' },
-  //     body: JSON.stringify(note),
-  //   })
-  //     .then((res) => {
-  //       if (!res.ok) {
-  //         throw new Error('Failed to save note');
-  //       }
-  //       return res.json(); // Might throw error if response is not valid JSON
-  //     })
-  //     .then((savedNote) => {
-  //       onAdd(savedNote);
-  //       setNote({ title: '', description: '' });
-  //       if (textareaRef.current) {
-  //         textareaRef.current.style.height = 'auto';
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.error('Failed to save note:', error.message);
-  //     });
 
-// };
   const handleSubmit = (e) => {
   e.preventDefault();
   onAdd(note); // Only call the parent handler

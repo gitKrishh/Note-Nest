@@ -14,9 +14,9 @@ const Home = () => {
       body: JSON.stringify(newNote)
     });
 
-    const savedNote = await response.json(); // this has the id from server
+    const savedNote = await response.json(); 
 
-    setNote(prev => [...prev, savedNote]); // ✅ use server-generated id
+    setNote(prev => [...prev, savedNote]); 
   } catch (error) {
     console.error('Failed to add note:', error);
   }

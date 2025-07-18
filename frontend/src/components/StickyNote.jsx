@@ -19,7 +19,7 @@ const StickyNote = ({ note, onUpdate, onDelete }) => {
   const handleMouseMove = (e) => {
     if (!noteRef.current) return;
     const newX = e.clientX - noteRef.current.offsetX;
-    const newY = Math.max(100, e.clientY - noteRef.current.offsetY); // avoid header
+    const newY = Math.max(100, e.clientY - noteRef.current.offsetY); 
     onUpdate(note.id, { x: newX, y: newY });
   };
 

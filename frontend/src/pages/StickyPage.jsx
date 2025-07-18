@@ -8,7 +8,7 @@ const StickyPage = () => {
 
 const addNote = () => {
   const sidebarWidth = 250;
-  const spacing = 220; // vertical space between notes
+  const spacing = 220;
   const notesPerColumn = 4;
 
   const column = Math.floor(notes.length / notesPerColumn);
@@ -18,7 +18,7 @@ const addNote = () => {
     id: Date.now(),
     content: '',
     x: sidebarWidth + 20 + column * 240,
-    y: 150 + row * spacing, // Adjusted spawn Y to avoid header overlap
+    y: 150 + row * spacing, 
   };
 
   setNotes(prev => [...prev, newNote]);
