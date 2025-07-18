@@ -1,30 +1,52 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import NoteForm from '../components/NoteForm';
 import NoteList from '../components/NoteList';
-import notes from '../../../backend/notes.json';
 
 const Home = () => {
-  const [note, setNote] = useState(notes);
+  const [note, setNote] = useState([]);
 
+  // Fetch notes when the component loads
+  useEffect(() => {
+    const fetchNotes = async () => {
+      try {
+        const response = await fetch('https://note-nest-y5s5.onrender.com/notes');
+        const data = await response.json();
+        setNote(data);
+      } catch (error) {
+        console.error('Failed to fetch notes:', error);
+      }
+    };
+
+    fetchNotes();
+  }, []);
+
+  // Add a note
   const addNote = async (newNote) => {
-  try {
-    const response = await fetch('https://note-nest-y5s5.onrender.com/notes', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(newNote)
-    });
+    try {
+      const response = await fetch('https://note-nest-y5s5.onrender.com/notes', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newNote)
+      });
 
-    const savedNote = await response.json(); 
+      const savedNote = await response.json();
+      setNote(prev => [...prev, savedNote]);
+    } catch (error) {
+      console.error('Failed to add note:', error);
+    }
+  };
 
-    setNote(prev => [...prev, savedNote]); 
-  } catch (error) {
-    console.error('Failed to add note:', error);
-  }
-};
+  // Delete a note
+  const deleteNote = async (id) => {
+    try {
+      await fetch(`https://note-nest-y5s5.onrender.com/notes/${id}`, {
+        method: 'DELETE'
+      });
 
-
-  const deleteNote = (id) => {
-    setNote(prev => prev.filter(note => note.id !== id));
+      setNote(prev => prev.filter(note => note.id !== id));
+    } catch (error) {
+      console.error('Failed to delete note:', error);
+    }
   };
 
   return (
@@ -32,7 +54,6 @@ const Home = () => {
       <h2>My Notes</h2>
       <NoteForm onAdd={addNote} />
       <NoteList notes={note} onDelete={deleteNote} />
-
     </div>
   );
 };
