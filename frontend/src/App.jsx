@@ -18,13 +18,13 @@ function App() {
   
 
   return (
-    <div style={{ display: 'flex' }}>
+    <div className="layout">
       <Navs />
-      <div style={{ flex: 1, padding: '2rem' }}>
+      <div className="main-content">
         <Outlet />
       </div>
     </div>
-  )
+  );
 }
 
 export default App

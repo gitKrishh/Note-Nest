@@ -61,7 +61,11 @@ const About = () => {
           linkedin.com/in/krishprasadd
         </a>
       </p>
-      
+      <h1 style={{ fontSize: '2rem', marginBottom: '1rem' }}>🛰️ Deployment</h1>
+
+      <p style={{ lineHeight: '1.6', fontSize: '1.1rem' }}>
+        This full-stack Notes App is deployed using Render for the backend and Vercel for the frontend. The backend API, built with Node.js and Express, is hosted on Render and serves as the interface for storing and retrieving notes from a local JSON file (acting as a simple database). The frontend, built with React and Vite, is deployed on Vercel for fast and seamless performance. This architecture ensures a smooth user experience with real-time note updates, while also demonstrating how to integrate and deploy a full-stack application across two powerful platforms.
+      </p>
     </div>
   );
 };
