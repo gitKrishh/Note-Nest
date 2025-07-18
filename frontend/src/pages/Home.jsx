@@ -8,7 +8,7 @@ const Home = () => {
 
   const addNote = async (newNote) => {
   try {
-    const response = await fetch('http://localhost:8000/notes', {
+    const response = await fetch('https://note-nest-y5s5.onrender.com/notes', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(newNote)
