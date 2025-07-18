@@ -77,14 +77,38 @@ onMouseLeave={(e) => {
   </Link>
 
 
-          <button className="delete-btn" onClick={() => {
-            fetch(`http://localhost:8000/notes/${note.id}`, { method: 'DELETE' })
-              .then(res => {
-                if (res.ok) onDelete(note.id);
-              });
-          }}>
-            ❌
-          </button>
+          <button
+  className="delete-btn"
+  onClick={() => {
+    fetch(`http://localhost:8000/notes/${note.id}`, { method: 'DELETE' })
+      .then(res => {
+        if (res.ok) onDelete(note.id);
+      });
+  }}
+  style={{
+    position: 'absolute',
+    top: '10px',
+    right: '12px',
+    background: 'rgba(255, 0, 0, 0.1)',
+    border: 'none',
+    fontSize: '0.75rem',
+    padding: '3px 6px',
+    borderRadius: '6px',
+    cursor: 'pointer',
+    transition: 'background 0.2s ease, transform 0.2s ease'
+  }}
+  onMouseEnter={(e) => {
+    e.currentTarget.style.background = 'rgba(255, 0, 0, 0.2)';
+    e.currentTarget.style.transform = 'scale(1.1)';
+  }}
+  onMouseLeave={(e) => {
+    e.currentTarget.style.background = 'rgba(255, 0, 0, 0.1)';
+    e.currentTarget.style.transform = 'scale(1)';
+  }}
+>
+  ❌
+</button>
+
         </div>
       ))}
     </div>

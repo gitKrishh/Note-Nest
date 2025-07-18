@@ -1,25 +1,32 @@
 import React, { useState, useRef } from 'react';
 
 const StickyNote = ({ note, onUpdate, onDelete }) => {
-  const [isDragging, setIsDragging] = useState(false);
   const noteRef = useRef();
 
   const handleMouseDown = (e) => {
-    setIsDragging(true);
-    noteRef.current.startX = e.clientX - note.x;
-    noteRef.current.startY = e.clientY - note.y;
+  if (e.target.tagName.toLowerCase() === 'textarea') return;
+
+  e.preventDefault();
+  noteRef.current = {
+    offsetX: e.clientX - note.x,
+    offsetY: e.clientY - note.y,
   };
+  window.addEventListener('mousemove', handleMouseMove);
+  window.addEventListener('mouseup', handleMouseUp);
+};
+
 
   const handleMouseMove = (e) => {
-    if (!isDragging) return;
-    const newX = e.clientX - noteRef.current.startX;
-const newY = Math.max(100, e.clientY - noteRef.current.startY); // prevent overlap with header
-
+    if (!noteRef.current) return;
+    const newX = e.clientX - noteRef.current.offsetX;
+    const newY = Math.max(100, e.clientY - noteRef.current.offsetY); // avoid header
     onUpdate(note.id, { x: newX, y: newY });
   };
 
   const handleMouseUp = () => {
-    setIsDragging(false);
+    noteRef.current = null;
+    window.removeEventListener('mousemove', handleMouseMove);
+    window.removeEventListener('mouseup', handleMouseUp);
   };
 
   const handleChange = (e) => {
@@ -28,11 +35,7 @@ const newY = Math.max(100, e.clientY - noteRef.current.startY); // prevent overl
 
   return (
     <div
-      ref={noteRef}
       onMouseDown={handleMouseDown}
-      onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUp}
-      onMouseLeave={handleMouseUp}
       style={{
         position: 'absolute',
         left: note.x,
@@ -43,7 +46,7 @@ const newY = Math.max(100, e.clientY - noteRef.current.startY); // prevent overl
         backgroundColor: '#fffa65',
         border: '1px solid #ccc',
         borderRadius: '8px',
-        cursor: isDragging ? 'grabbing' : 'grab',
+        cursor: 'grab',
         boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
         userSelect: 'none',
       }}
@@ -63,7 +66,22 @@ const newY = Math.max(100, e.clientY - noteRef.current.startY); // prevent overl
           outline: 'none',
         }}
       />
-      <button onClick={onDelete} style={{ marginTop: '0.5rem' }}>❌</button>
+      <button
+        onClick={onDelete}
+        style={{
+          marginTop: '0.4rem',
+          padding: '4px 8px',
+          fontSize: '0.75rem',
+          backgroundColor: '#ff5e5e',
+          color: 'white',
+          border: 'none',
+          borderRadius: '4px',
+          cursor: 'pointer',
+        }}
+        title="Delete note"
+      >
+        ❌
+      </button>
     </div>
   );
 };
