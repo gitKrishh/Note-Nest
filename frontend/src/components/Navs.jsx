@@ -35,7 +35,7 @@ const Navs = () => {
           {[
             { to: '/home', label: 'Home' },
             { to: '/sticky', label: 'Sticky Notes' },
-            { to: '/feedback', label: 'About' }
+            { to: '/about', label: 'About' }
           ].map((link, i) => (
             <li key={link.to} ref={(el) => (linksRef.current[i] = el)}>
               <NavLink

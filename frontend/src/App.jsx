@@ -5,7 +5,7 @@ import './App.css'
 import React from 'react'
 import { Routes, Route, NavLink } from 'react-router-dom';
 import Home from './pages/Home';
-import Feedback from './pages/Feedback';
+import Feedback from './pages/About';
 import { Outlet } from 'react-router-dom'
 import Navs from './components/Navs'
 
