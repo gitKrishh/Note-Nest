@@ -1,24 +1,40 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import App from './App.jsx';
-import Home from './pages/Home.jsx';
-import About from './pages/About.jsx';
-import Sticky from './pages/StickyPage.jsx';
-import NoteDetail from './pages/NoteDetail.jsx';
-import StickyPage from './pages/StickyPage.jsx';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import App from './App'; // Layout with <Nav /> + <Outlet />
+import Home from './pages/Home';
+import About from './pages/About';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import NoteDetail from './pages/NoteDetail';
+import StickyPage from './pages/StickyPage';
+import { AuthProvider } from './AuthContext';
+import ProtectedRoute from './ProtectedRoute';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-
-    <BrowserRouter>
+  <BrowserRouter>
+    <AuthProvider>
       <Routes>
-        <Route path="/" element={<App />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/notes/:id" element={<NoteDetail />} />
-          <Route path="sticky" element={<StickyPage />} />
+        {/* Routes WITHOUT sidebar */}
+        <Route path="/" element={<Navigate to="/login" />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+
+        {/* Routes WITH sidebar (Protected + Layout) */}
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute>
+              <App /> {/* App contains Nav + Outlet */}
+            </ProtectedRoute>
+          }
+        >
+          <Route path="home" element={<Home />} />
           <Route path="about" element={<About />} />
+          <Route path="sticky" element={<StickyPage />} />
+          <Route path="notes/:id" element={<NoteDetail />} />
         </Route>
       </Routes>
-    </BrowserRouter>
+    </AuthProvider>
+  </BrowserRouter>
 );
