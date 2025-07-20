@@ -10,7 +10,7 @@ const NoteDetail = () => {
   const containerRef = useRef();
 
   useEffect(() => {
-    fetch(`https://note-nest-y5s5.onrender.com/notes/${id}`)
+    fetch(`https://note-nest-production.up.railway.app/notes/${id}`)
       .then(res => res.json())
       .then(data => {
         setNote(data);

@@ -80,7 +80,7 @@ onMouseLeave={(e) => {
           <button
   className="delete-btn"
   onClick={() => {
-    fetch(`https://note-nest-y5s5.onrender.com/notes/${note.id}`, { method: 'DELETE' })
+    fetch(`https://note-nest-production.up.railway.app/notes/${note.id}`, { method: 'DELETE' })
       .then(res => {
         if (res.ok) onDelete(note.id);
       });

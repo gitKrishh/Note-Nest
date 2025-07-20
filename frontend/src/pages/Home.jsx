@@ -9,7 +9,7 @@ const Home = () => {
   useEffect(() => {
     const fetchNotes = async () => {
       try {
-        const response = await fetch('https://note-nest-y5s5.onrender.com/notes');
+        const response = await fetch('https://note-nest-production.up.railway.app/notes');
         const data = await response.json();
         setNote(data);
       } catch (error) {
@@ -23,7 +23,7 @@ const Home = () => {
   // Add a note
   const addNote = async (newNote) => {
     try {
-      const response = await fetch('https://note-nest-y5s5.onrender.com/notes', {
+      const response = await fetch('https://note-nest-production.up.railway.app/notes', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newNote)
@@ -39,7 +39,7 @@ const Home = () => {
   // Delete a note
   const deleteNote = async (id) => {
     try {
-      await fetch(`https://note-nest-y5s5.onrender.com/notes/${id}`, {
+      await fetch(`https://note-nest-production.up.railway.app/notes/${id}`, {
         method: 'DELETE'
       });
 

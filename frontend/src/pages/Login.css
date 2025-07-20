@@ -1,0 +1,103 @@
+.login-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('https://miro.medium.com/v2/resize:fit:1022/1*YkdBz-kmkBO_3wGyXYrcvQ.png');
+  /* background: linear-gradient(135deg, #90A955, #31572C); soft green gradient */
+  
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.login-box {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 16px;
+  padding: 40px 32px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  backdrop-filter: blur(8px);
+}
+
+.login-box h2 {
+  margin-bottom: 25px;
+  color: #2e7d32; /* medium green */
+}
+
+.login-box input {
+  width: 100%;
+  padding: 12px 14px;
+  margin: 10px 0;
+  border: 1.5px solid #c8e6c9;
+  border-radius: 8px;
+  background: #f9fff9;
+  color: #2e7d32;
+  font-size: 15px;
+  transition: border 0.3s ease, box-shadow 0.3s;
+}
+
+.login-box input::placeholder {
+  color: #81c784;
+}
+
+.login-box input:focus {
+  border-color: #66bb6a;
+  box-shadow: 0 0 5px rgba(102, 187, 106, 0.4);
+  outline: none;
+}
+
+.login-box button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 15px;
+  background-color: #388e3c;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.login-box button:hover {
+  background-color: #abd5ad;
+  transform: translateY(-2px);
+}
+
+.login-box p {
+  margin-top: 18px;
+  font-size: 14px;
+  color: #2e7d32;
+}
+
+.login-box p button {
+  background: none;
+  border: none;
+  color: #1b5e20;
+  font-weight: bold;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.login-box p button:hover {
+  color: #2e7d32;
+}
+
+.error-message {
+  margin-top: 12px;
+  padding: 8px 12px;
+  background-color: #ffcdd2;
+  color: #b71c1c;
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+#form{
+    box-shadow: none;
+    background-color: rgba(255, 0, 0, 0.8);
+    background: rgba(250, 249, 249, 0);
+    color: rgba(255, 0, 0, 0.8);
+}
