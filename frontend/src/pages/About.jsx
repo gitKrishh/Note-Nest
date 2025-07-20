@@ -19,24 +19,25 @@ const About = () => {
     >
       <h1 style={{ fontSize: '2rem', marginBottom: '1rem' }}>📓 About NoteNest</h1>
       <p style={{ lineHeight: '1.6', fontSize: '1.1rem' }}>
-        <strong>NoteNest</strong> is a modern, dual-mode note-taking application that merges the flexibility of
-        <strong> Sticky Notes</strong> with the structure of <strong>full-length titled notes</strong>.
+        <strong>NoteNest</strong> is a sleek and intuitive dual-mode note-taking app that seamlessly blends the
+        spontaneity of <strong>Sticky Notes</strong> with the structure of <strong>full-length titled notes</strong>.
       </p>
 
       <p style={{ lineHeight: '1.6', fontSize: '1.1rem', marginTop: '1rem' }}>
-        Whether you're brainstorming with quick drag-and-drop sticky notes or organizing ideas with detailed
-        notes, <strong>NoteNest</strong> is designed to adapt to your flow.
+        Whether you're brainstorming quickly or organizing detailed thoughts, <strong>NoteNest</strong> is built to
+        support your creative flow with a beautiful, functional interface.
       </p>
 
       <ul style={{ lineHeight: '1.8', paddingLeft: '1.5rem', fontSize: '1.1rem' }}>
-        <li>✅ Sticky notes with drag-and-drop support</li>
-        <li>📝 Full-featured notes with titles and descriptions</li>
-        <li>🎨 Aesthetic glassmorphism UI and smooth animations</li>
-        <li>⚡ Fast, responsive, and distraction-free UX</li>
+        <li>✅ Drag-and-drop sticky notes for fast idea capture</li>
+        <li>📝 Full-featured notes with titles and rich descriptions</li>
+        <li>🎨 Elegant glassmorphism UI with smooth transitions</li>
+        <li>⚡ Responsive, fast, and minimal distraction UX</li>
       </ul>
 
       <p style={{ marginTop: '1.5rem', fontSize: '1.05rem' }}>
-        Built by <strong>Krish Prasad</strong> using <strong>React</strong>, with love for design and productivity.
+        Built by <strong>Krish Prasad</strong> using <strong>React</strong>, with a passion for clean design and
+        productivity.
       </p>
 
       <p style={{ marginTop: '1rem', fontSize: '1.05rem' }}>
@@ -61,10 +62,17 @@ const About = () => {
           linkedin.com/in/krishprasadd
         </a>
       </p>
-      <h1 style={{ fontSize: '2rem', marginBottom: '1rem' }}>🛰️ Deployment</h1>
 
+      <h1 style={{ fontSize: '2rem', marginBottom: '1rem', marginTop: '2rem' }}>🛰️ Deployment</h1>
       <p style={{ lineHeight: '1.6', fontSize: '1.1rem' }}>
-        This full-stack Notes App is deployed using Render for the backend and Vercel for the frontend. The backend API, built with Node.js and Express, is hosted on Render and serves as the interface for storing and retrieving notes from a local JSON file (acting as a simple database). The frontend, built with React and Vite, is deployed on Vercel for fast and seamless performance. This architecture ensures a smooth user experience with real-time note updates, while also demonstrating how to integrate and deploy a full-stack application across two powerful platforms.
+        <strong>NoteNest</strong> is a full-stack application with a React + Vite frontend and a Node.js + Express
+        backend. The <strong>frontend</strong> is hosted on <strong>Firebase</strong>, ensuring fast loading speeds
+        and secure hosting. The <strong>backend</strong> is deployed on <strong>Railway</strong>, which handles the
+        API logic and stores note data in a local JSON file, simulating a lightweight database.
+      </p>
+      <p style={{ lineHeight: '1.6', fontSize: '1.1rem', marginTop: '1rem' }}>
+        This setup offers smooth performance, live updates, and a practical example of how to build and deploy a
+        modern full-stack project using Firebase and Railway.
       </p>
     </div>
   );
