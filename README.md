@@ -1,20 +1,21 @@
 # 📝 NoteNest
 
-A clean and functional full-stack **Sticky Notes App** built with **React** on the frontend and a **Node.js + JSON-based backend**. Users can create, view, and delete notes — each viewable on a unique route.
+A simple and clean full-stack **Sticky Notes App** built with **React** on the frontend and a **JSON-based API** on the backend. Users can create, view, and delete notes — with each note viewable at a unique route.
 
 ## 🚀 Features
 
 - ✍️ Add sticky notes with title and content  
-- 🔥 View notes in a responsive, card-based layout  
-- 🧹 Delete notes with one click  
-- 🔗 Each note accessible via a unique route (`/home/:id`)  
-- 📦 Data stored in a `notes.json` file using a lightweight API  
-- 🌐 Fully deployed using **Firebase** (frontend) and **Railway** (backend)  
+- 🔥 View notes in a responsive card layout  
+- 🧹 Delete notes easily  
+- 🔗 Unique route for each note (`/home/:id`)  
+- 📦 Stores data in a `notes.json` file via Node.js backend  
+- 🌐 Deployed frontend on **Firebase** and backend on **Railway**  
 
 ---
 
 ## 📁 Folder Structure
 
+```
 NoteNest/
 ├── client/          # React frontend
 │   ├── components/  # NoteForm, NoteList, NoteCard, etc.
@@ -22,62 +23,65 @@ NoteNest/
 │   ├── App.jsx
 │   └── index.js
 ├── server/          # Node.js backend
-│   ├── notes.json   # JSON file acting as the database
+│   ├── notes.json   # JSON file used as database
 │   ├── server.js    # Express server
 ├── README.md
+```
 
 ---
 
 ## ⚙️ Tech Stack
 
-- Frontend: React, React Router DOM, Vite  
-- Backend: Node.js, Express  
-- Database: JSON File (`notes.json`)  
-- Deployment:
-  - Frontend: Firebase
-  - Backend: Railway
+- **Frontend:** React, React Router DOM  
+- **Backend:** Node.js, Express  
+- **Database:** JSON File (`notes.json`)  
+- **Deployment:**
+  - Frontend: [Firebase](https://firebase.google.com/)
+  - Backend: [Railway](https://railway.com/)
 
 ---
 
 ## 🌍 Live Demo
 
-- Frontend: https://notenest-e5bca.web.app  
-- Backend API: https://note-nest-production.up.railway.app/
-
+- **Frontend:** [https://notenest-e5bca.web.app](https://notenest-e5bca.web.app)  
+- **Backend API:** [https://note-nest-production.up.railway.app/](https://note-nest-production.up.railway.app/)
 
 ---
 
 ## 🛠️ Setup Instructions
 
-1. Clone the Repo
-    git clone https://github.com/gitKrishh/Note-Nest.git
-    cd Note-Nest
+### 1. Clone the Repo
+```bash
+git clone https://github.com/your-username/NoteNest.git
+cd NoteNest
+```
 
-2. Start the Backend (Node.js + Express)
-    cd server
-    npm install
-    node server.js
+### 2. Start Backend (Node.js + Express)
+```bash
+cd backend
+npm install
+node server.js
+```
 
-    The backend will run at http://localhost:8000 by default.
+### 3. Start Frontend (React)
+```bash
+cd frontend
+npm install
+npm start
+```
 
-3. Start the Frontend (React + Vite)
-    cd client
-    npm install
-    npm run dev
-
-    Make sure the backend is running and the API base URL is set properly in your frontend code.
+> Make sure the backend is running on `http://localhost:5000` or update the API base URL in your React code.
 
 ---
 
 ## 🧠 Learning Concepts
 
-This project demonstrates:
+This app demonstrates:
 
-- Building full-stack apps with no external DB
-- Serving and reading data from a JSON file
-- Connecting React to a custom Node.js backend
-- Creating dynamic routes with React Router
-- Deploying frontend and backend on separate platforms (Firebase + Railway)
+- How to use JSON files as a makeshift database  
+- Connecting React frontend with a custom backend  
+- Using React Router for dynamic routes  
+- Deploying frontend and backend on separate platforms (Firebase + Railway)  
 
 ---
 
@@ -85,25 +89,25 @@ This project demonstrates:
 
 - Edit notes functionality  
 - Markdown support for content  
-- Authentication via Firebase Auth  
-- Cloud database integration (MongoDB or Supabase)  
-- Search and filter functionality  
+- Authentication (e.g. Firebase Auth)  
+- Cloud DB (MongoDB or Supabase)  
+- Search and filter notes  
 
 ---
 
 ## 📜 License
 
 MIT License  
-© 2025 Krish Prasad (https://github.com/gitKrishh)
+© 2025 [Krish Prasad](https://github.com/gitKrishh)
 
 ---
 
 ## 🤝 Contributing
 
-Pull requests are welcome! For major changes, please open an issue first to discuss what you’d like to improve.
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 ---
 
 ## 🙏 Acknowledgements
 
-Built with ❤️ as a personal productivity tool and full-stack learning project — using a simple JSON backend to keep things lightweight and transparent.
+Built with ❤️ to practice full-stack development without using a traditional database.
