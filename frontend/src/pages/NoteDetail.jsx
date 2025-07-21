@@ -2,8 +2,11 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import gsap from 'gsap';
 import './NoteDetail.css';
+import { useAuth } from '../Authcontext';
+
 
 const NoteDetail = () => {
+  const { currentUser } = useAuth();
   const { id } = useParams();  
   const [note, setNote] = useState(null);
   const [loading, setLoading] = useState(true);
