@@ -8,7 +8,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import NoteDetail from './pages/NoteDetail';
 import StickyPage from './pages/StickyPage';
-import { AuthProvider } from './AuthContext';
+import { AuthProvider } from './Authcontext';
 import ProtectedRoute from './ProtectedRoute';
 
 ReactDOM.createRoot(document.getElementById('root')).render(

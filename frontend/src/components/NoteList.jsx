@@ -2,8 +2,12 @@ import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import './NoteList.css';
+import { useAuth } from '../Authcontext';
+
 
 const NoteList = ({ notes, onDelete }) => {
+  const { currentUser } = useAuth();
+
   const containerRef = useRef(null);
 
   useEffect(() => {

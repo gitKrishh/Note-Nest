@@ -7,12 +7,13 @@ const Home = () => {
   const [note, setNote] = useState([]);
   const { currentUser } = useAuth();
 
-
-  // Fetch notes when the component loads
+  // Fetch notes on mount
   useEffect(() => {
     const fetchNotes = async () => {
       try {
-        const response = await fetch('https://note-nest-production.up.railway.app/notes?userId=${currentUser.uid}');
+        const response = await fetch(
+          `https://note-nest-production.up.railway.app/notes?userId=${currentUser.uid}`
+        );
         const data = await response.json();
         setNote(data);
       } catch (error) {
@@ -20,12 +21,14 @@ const Home = () => {
       }
     };
 
-    fetchNotes();
-  }, []);
+    if (currentUser) {
+      fetchNotes();
+    }
+  }, [currentUser]);
 
-  // Add a note
+  // Add a new note
   const addNote = (noteData) => {
-    fetch('https://note-nest-production.up.railway.app/notes?userId=${currentUser.uid}', {
+    fetch('https://note-nest-production.up.railway.app/notes', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ ...noteData, userId: currentUser.uid })
@@ -39,7 +42,7 @@ const Home = () => {
   // Delete a note
   const deleteNote = async (id) => {
     try {
-      await fetch(`https://note-nest-production.up.railway.app/notes?userId=${currentUser.uid}/${id}`, {
+      await fetch(`https://note-nest-production.up.railway.app/notes/${id}`, {
         method: 'DELETE'
       });
 
