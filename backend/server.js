@@ -10,7 +10,20 @@ const DATA_FILE = path.join(__dirname, 'notes.json');
 app.use(express.json());
 app.use(cors());
 
-// GET all notes or notes for a specific user
+// ✅ Get a specific note by ID
+app.get('/notes/:id', (req, res) => {
+  const { id } = req.params;
+  const data = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
+  const note = data.find(n => n.id === id);
+
+  if (!note) {
+    return res.status(404).json({ error: 'Note not found' });
+  }
+
+  res.json(note);
+});
+
+// ✅ Get all notes or notes for a specific user
 app.get('/notes', (req, res) => {
   const userId = req.query.userId;
   const data = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
@@ -23,7 +36,7 @@ app.get('/notes', (req, res) => {
   res.json(data);
 });
 
-// POST a new note
+// ✅ Post a new note
 app.post('/notes', (req, res) => {
   const { title, description, userId } = req.body;
   if (!userId || !title) {
@@ -43,7 +56,7 @@ app.post('/notes', (req, res) => {
   res.status(201).json(newNote);
 });
 
-// DELETE a note (with optional userId verification)
+// ✅ Delete a note
 app.delete('/notes/:id', (req, res) => {
   const { id } = req.params;
   const data = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
@@ -52,8 +65,6 @@ app.delete('/notes/:id', (req, res) => {
   if (!noteToDelete) {
     return res.status(404).json({ error: 'Note not found' });
   }
-
-  // Optional: Add userId check here to prevent unauthorized deletions
 
   const updatedData = data.filter(n => n.id !== id);
   fs.writeFileSync(DATA_FILE, JSON.stringify(updatedData, null, 2));
