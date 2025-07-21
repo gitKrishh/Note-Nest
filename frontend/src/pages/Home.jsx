@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import NoteForm from '../components/NoteForm';
 import NoteList from '../components/NoteList';
+import { useAuth } from '../Authcontext';
 
 const Home = () => {
   const [note, setNote] = useState([]);
+  const { currentUser } = useAuth();
+
 
   // Fetch notes when the component loads
   useEffect(() => {
     const fetchNotes = async () => {
       try {
-        const response = await fetch('https://note-nest-production.up.railway.app/notes');
+        const response = await fetch('https://note-nest-production.up.railway.app/notes?userId=${currentUser.uid}');
         const data = await response.json();
         setNote(data);
       } catch (error) {
@@ -21,25 +24,22 @@ const Home = () => {
   }, []);
 
   // Add a note
-  const addNote = async (newNote) => {
-    try {
-      const response = await fetch('https://note-nest-production.up.railway.app/notes', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newNote)
+  const addNote = (noteData) => {
+    fetch('https://note-nest-production.up.railway.app/notes?userId=${currentUser.uid}', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ...noteData, userId: currentUser.uid })
+    })
+      .then(res => res.json())
+      .then(newNote => {
+        setNote(prev => [...prev, newNote]);
       });
-
-      const savedNote = await response.json();
-      setNote(prev => [...prev, savedNote]);
-    } catch (error) {
-      console.error('Failed to add note:', error);
-    }
   };
 
   // Delete a note
   const deleteNote = async (id) => {
     try {
-      await fetch(`https://note-nest-production.up.railway.app/notes/${id}`, {
+      await fetch(`https://note-nest-production.up.railway.app/notes?userId=${currentUser.uid}/${id}`, {
         method: 'DELETE'
       });
 
