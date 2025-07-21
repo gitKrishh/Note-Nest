@@ -16,22 +16,37 @@ app.get('/notes', (req, res) => {
   res.json(data);
 });
 
-// GET single note by ID
-app.get('/notes/:id', (req, res) => {
+
+// GET notes for a specific user
+app.get('/notes', (req, res) => {
+  const userId = req.query.userId;
+  if (!userId) return res.status(400).json({ error: 'User ID is required' });
+
   const data = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
-  const note = data.find(n => n.id === req.params.id);
-  if (!note) return res.status(404).send({ error: 'Note not found' });
-  res.json(note);
+  const userNotes = data.filter(note => note.userId === userId);
+  res.json(userNotes);
 });
+
 
 // POST a new note
 app.post('/notes', (req, res) => {
+  const { title, description, userId } = req.body;
+
+  if (!userId) return res.status(400).json({ error: 'User ID is required' });
+
   const data = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
-  const newNote = { ...req.body, id: Date.now().toString() };
+  const newNote = {
+    id: Date.now().toString(),
+    title,
+    description,
+    userId
+  };
+
   data.push(newNote);
   fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2));
   res.status(201).json(newNote);
 });
+
 
 // DELETE note
 app.delete('/notes/:id', (req, res) => {
