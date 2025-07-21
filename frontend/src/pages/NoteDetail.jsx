@@ -4,7 +4,6 @@ import gsap from 'gsap';
 import './NoteDetail.css';
 import { useAuth } from '../Authcontext';
 
-
 const NoteDetail = () => {
   const { currentUser } = useAuth();
   const { id } = useParams();  
@@ -13,30 +12,36 @@ const NoteDetail = () => {
   const containerRef = useRef();
 
   useEffect(() => {
-    fetch(`https://note-nest-production.up.railway.app/notes?userId=${currentUser.uid}`)
+    // Fetch note by ID
+    fetch(`https://note-nest-production.up.railway.app/notes/${id}`)
       .then(res => res.json())
       .then(data => {
-        setNote(data);
+        // If your backend does not filter by user, do it manually here
+        if (data.userId === currentUser.uid) {
+          setNote(data);
+        } else {
+          setNote(null); // unauthorized access
+        }
         setLoading(false);
       })
       .catch(err => {
         console.error('Error loading note:', err);
         setLoading(false);
       });
-  }, [id]);
+  }, [id, currentUser]);
 
   useEffect(() => {
-    if (!loading) {
+    if (!loading && note) {
       gsap.fromTo(
         containerRef.current,
         { opacity: 0, y: 50 },
         { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }
       );
     }
-  }, [loading]);
+  }, [loading, note]);
 
   if (loading) return <p className="note-loading">Loading note...</p>;
-  if (!note) return <p className="note-notfound">Note not found</p>;
+  if (!note) return <p className="note-notfound">Note not found or unauthorized</p>;
 
   return (
     <div ref={containerRef} className="note-detail-container">

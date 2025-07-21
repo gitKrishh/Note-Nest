@@ -6,7 +6,6 @@ import { useAuth } from '../Authcontext';
 
 
 const NoteList = ({ notes, onDelete }) => {
-  const { currentUser } = useAuth();
 
   const containerRef = useRef(null);
 
